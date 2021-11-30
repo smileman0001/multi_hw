@@ -54,7 +54,7 @@ print("----------------")
 print(elapsed) #Стандарт
 print("----------------")
 
-#синхронная проверка
+#aсинхронная проверка
 count = int(input("Введите количество потоков:"))
 def split_to_nparts(l, n):
     #https://stackoverflow.com/questions/2130016/splitting-a-list-into-n-parts-of-approximately-equal-length
@@ -71,7 +71,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=count) as executor:
     future2worker = {executor.submit(check_links, worker2links[w_id]): w_id for w_id in range(count)}
     for future in concurrent.futures.as_completed(future2worker):
         w_id = future2worker[future]
-        print(f"Worker {w_id} finished checking {len(worker2links[w_id])} URLs")
+        #print(f"Worker {w_id} finished checking {len(worker2links[w_id])} URLs")
 async_elapsed = timeit.default_timer() - async_start
 print(f" {async_elapsed} using {count} workers")
 #5 потоков - примерно в 3 - 5 раз быстрее стандарта
